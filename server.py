@@ -2,13 +2,24 @@ import os
 
 import uvicorn
 from starlette.applications import Starlette
-from starlette.routing import Mount, Route
 from starlette.responses import PlainTextResponse
+from starlette.routing import Mount, Route
 
 from mcp.server.fastmcp import FastMCP
+from mcp.server.transport_security import TransportSecuritySettings
 
 
-mcp = FastMCP("Test MCP Server")
+mcp = FastMCP(
+    "Test MCP Server",
+    transport_security=TransportSecuritySettings(
+        allowed_hosts=[
+            "test-mcp-server-6ml5.onrender.com",
+        ],
+        allowed_origins=[
+            "https://test-mcp-server-6ml5.onrender.com",
+        ],
+    ),
+)
 
 
 @mcp.tool()
