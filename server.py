@@ -28,6 +28,26 @@ def add(a: int, b: int) -> int:
     return a + b
 
 
+@mcp.tool()
+def get_weather(city: str) -> dict:
+    """Get the current weather forecast for a given city.
+
+    Args:
+        city: The name of the city to get the weather for.
+
+    Returns:
+        A dictionary containing the city name, temperature in Celsius,
+        weather condition, humidity percentage, and a recommendation.
+    """
+    return {
+        "city": city,
+        "temperature_celsius": 22,
+        "condition": "Partly Cloudy",
+        "humidity_percent": 60,
+        "recommendation": f"Mild weather in {city}. A light jacket is recommended."
+    }
+
+
 async def health(request):
     return PlainTextResponse("MCP server is running")
 
